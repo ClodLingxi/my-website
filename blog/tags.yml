@@ -17,3 +17,8 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+website:
+  label: 网页
+  permalink: /website
+  description: 用于记录学习网页的经验

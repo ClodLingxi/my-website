@@ -21,3 +21,13 @@ slorber:
     linkedin: sebastienlorber
     github: slorber
     newsletter: https://thisweekinreact.com
+
+
+clodlingxi:
+  name: Lingxi
+  title: Runner
+  url: https://github.com/ClodLingxi
+  image_url: https://avatars.githubusercontent.com/u/37789410
+  page: true
+  socials:
+    github: clodlingxi

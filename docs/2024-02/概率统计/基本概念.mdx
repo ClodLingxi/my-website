@@ -1,0 +1,53 @@
+import {C} from './conceptData'
+
+## 随机试验与随机事件
+
+<C name='随机试验'/>
+<C name='样本空间'/>
+<C name='随机事件'/>
+
+## 事件的运算与关系
+
+### 事件的运算
+
+<C name='事件的和'/>
+<C name='事件的积'/>
+<C name='事件的差'/>
+<C name='事件的补'/>
+
+### 事件的运算与关系
+
+<C name='事件的包含'/>
+<C name='互斥事件'/>
+<C name='对立事件'/>
+
+### 事件运算的性质
+
+1. 
+    $AB=BA, A+B=B+A$ 
+2. 
+    (1) $A\cup A=A, A\cap A=A$
+    (2) $A\cap (B\cup C)=(A\cap B)\cup (A\cap C), A\cup (B\cap C)=(A\cup B)\cap (A\cup C)$
+3. 
+    (1) $A=(A-B)\cup A$
+    (2) $(A-B)\cap A=A-B$
+    (3) $A+B=(A-B)\cup AB\cup (B-A)$
+4. 
+    (1) $A+\overline\{A\}=\Omega$
+    (2) $A\cap \overline\{A\}=\emptyset$
+5. 
+    (1) overline\{AB\}=overline\{A\}+overline\{B\}
+    (2) overline\{A\}overline\{B\}=overline\{A+B\}
+
+### <C name='概率'/>的基本公式
+
+1. 减法公式
+    $P(A-B)=P(A\overline{"{B}"})=P(A)-P(AB)$
+2. 加法公式
+    $P(A+B)=P(A)+P(B)-P(AB)$
+3. 条件概率公式
+    $P(B|A)=\frac{"{AB}"}{"{A}"}$
+4. 乘法公式
+    - $P(AB)=P(A)P(A|B)$
+    - $P(A_1A_2...A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1A_2)...P(A_n)|A_1A_2...A_{"{n-1}"}$
+
