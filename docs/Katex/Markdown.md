@@ -8,11 +8,35 @@
 
 ### $\cup and \cap$: \cup and \cap
 
-### 对称差 $\bigoplus$: \bigoplus
+### $\bigoplus$: \bigoplus
 
 ### $\lfloor x \rfloor$: \lfloor x \rfloor
 
 ### $\delta$ \delta
+
+### $\displaystyle\bigcup_{i=1}^n$： \displaystyle\bigcup_{i=1}^{n}
+
+### $\displaystyle\sum_{i=1}^n$：\displaystyle\sum_{i=1}^n
+
+### $\overset{\cdot}{=}$ 
+
+### $\vec{x}$：\vec{s}
+
+### $\infty$：\infty
+
+### $\cdots$: \cdots 
+
+### $\int_{-\infty}^xf(t)dt$
+
+### 
+$$
+\begin{cases}
+x + y = 1 \\
+x - y = 3
+\end{cases}
+$$
+
+### $\sqrt[3]{x\pi}$
 
 [洛谷](https://www.luogu.com.cn/article/4a81e2tt)
 

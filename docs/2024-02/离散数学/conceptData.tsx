@@ -469,6 +469,15 @@ const conceptList: ConceptData[] = [
         other_name: ['欧拉回路', '欧拉通路', '半欧拉图', '孤立点']
     },
     {
+        name: "Fleury算法",
+        explain: `(1)任取$v_0\\in V(G)$，令$P_0=v_0$
+        (2)设$P_i=v_0e_1v_1e_2\\cdots e_iv_i$已经行遍，按下列方法从$E(G)-\\{e_1,e_2,\\cdots ,e_i\\}$中选取$e_{i+1}$
+        ①$e_{i+1}$与$v_i$相关联
+        ②最后再选择$e_{i+1}$作为$G_i=G-\\{e_1,e_2,\\cdots ,e_i\\}$的桥
+        (3)重复执行(2)`,
+        front_log: ['关联']
+    },
+    {
         name: "哈密顿图",
         explain: `哈密顿通路：通过图中所有点一次且仅一次的通路
         （即点只能走一次且要求都走一遍，但不要求走过所有边），
@@ -484,7 +493,7 @@ const conceptList: ConceptData[] = [
         森林：拥有至少两个连通分支，且连通分支都是树的无向图
         平凡树：平凡图`,
         front_log: ['连通', '通路', '无向图', '平凡图'],
-        other_name: ['森林', '平凡树']
+        other_name: ['森林', '平凡树', 's树']
     },
     {
         name: '树叶',
@@ -494,6 +503,38 @@ const conceptList: ConceptData[] = [
         front_log: ['无向树'],
         other_name: ['分支点']
     },
+    {
+        name: "生成树",
+        explain: `设$T$是无向图$G$的子图且为树，
+        若$T$是$G$的生成子图且为树，
+        称T为G的生成树。
+        树枝：$\\forall e\\in E(G)$，$e\\in E(T)$，称e为T的树枝干，
+        弦：$\\forall e\\in E(G)$，$e\\notin E(T)$，称e为T的弦，
+        余树：$G[E(G)-E(T)]$为G的余树`,
+        front_log: ['无向图', '无向树', '生成子图'],
+        other_name: ['树枝', '弦', '余树']
+    },
+    {
+        name: "基本回路",
+        explain: `设T是n阶m条边的无向连通图G的一棵生成树，
+        设$e_1,e_2,...,e_{m-n+1}$为T的弦。
+        基本回路（或称基本圈）C：是T添加$e_r$产生的G中只含弦$e_r$，其余边均为树枝的圈，
+        基本回路系统：{$C_{e_1},C_{e_2}...,C_{e_{m-n+1}}$} 共m-n+1个，
+        圈秩：m-n+1，记为$(G)$，
+        `,
+        front_log: ['连通图', '生成树', '通路'],
+        other_name: ['基本回路系统', '圈秩']
+    },
+    {
+        name: "基本割集",
+        explain: `设T是n阶m条边的无向连通图G的一棵生成树，
+        设$e_1,e_2,...,e_{n-1}$为T的树枝。
+        基本割集S：是G只含树枝$e_r$，其余边均为弦的割集，
+        基本割集系统：{$S_{e_1},S_{e_2}...,S_{e_{n-1}}$} 共n-1个，
+        割集秩：n-1，记为$(G)$，`,
+        front_log: ['连通图', '生成树', '边割集'],
+        other_name: ['基本割集系统', '割集秩']
+    }
 ]
 
 const TheoremList: TheoremData[] = [
@@ -580,7 +621,59 @@ const TheoremList: TheoremData[] = [
     },
     {
         name: "图论.14",
-        front_log: ["G是n阶简单无向连通图", '$边连通度\\lambda (G)<最小度\\delta (G)$'],
-        back_log: [""],
+        front_log: ["G是n阶简单无向连通图", '$边连通度\\lambda (G)=\\lambda$', "最小度$\\delta (G)=\\delta$", '点连通度$\\kappa (G)=\\kappa$'],
+        back_log: ["或：$0<=\\kappa<=\\lambda<=\\delta<\\lfloor \\frac{n}{2} \\rfloor$", "或：$1<=2\\delta-n+2<=\\kappa<=\\lambda=\\delta<n-1$", "\\kappa=\\lambda=\\delta=n-1"],
     },
+    {
+        name: "图论.15",
+        front_log: ["G是$n(n>=3)$阶无向连通图"],
+        back_log: ["G为2-连通图当且仅当G中任意两点共圈"],
+    },
+    {
+        name: "图论.17",
+        front_log: ["v为无向连通图G中的一个顶点", "v为G的割点"],
+        back_log: ["存在V(G)-v的一个划分：$V(G)-v=V_1\\cup V_2$，使得对于任意$u\\in V_1,w\\in V_2$，v都在(u,w)的通路上"],
+    },
+    {
+        name: "树.1",
+        front_log: ['设G=<V,E>为n阶m条边的无向图，则下面各命题是等价的'],
+        back_log: [
+            '(1) G是树（无向连通图）',
+            '(2) G中任二顶点之间存在唯一的一条路径',
+            '(3) G中没有圈，且$m=n-1$',
+            '(4) G是连通的，且$m=n-1$',
+            '(5) G是连通的，且G中任何边均为桥',
+            '(6) G中没有圈，但在G中任二不同顶点$u,v$之间增添边$(u,v)$，所得图含唯一的一个圈'
+        ]
+    },
+    {
+        name: "树.2",
+        front_log: ['$T$是$n$阶非平凡的无向树'],
+        back_log: ['则$T$至少由两片树叶'],
+    },
+    {
+        name: "树.3",
+        front_log: ['无向图G具由生成树'],
+        back_log: ['G是连通的'],
+    },
+    {
+        name: "树.4",
+        front_log: ['设T是无向连通图G中的一棵生成树', 'e为T的任意一条弦'],
+        back_log: ['T\\sup e中含G的只含一条弦其余边均为树枝的图', '不同弦对应的圈不同'],
+    },
+    {
+        name: "树.5",
+        front_log: ['T是连通图G的一棵生成树', 'e为T的一条树枝'],
+        back_log: ['G中存在只含树枝e，其余元素均为弦的割集', '不同树枝，对应不同割集'],
+    },
+    {
+        name: "树.6",
+        front_log: ['设$G=<V,E>$为n阶无向连通标定图'],
+        back_log: ['对G的任意非环边e均有$(G-e)-(G\\e)$'],
+    },
+    {
+        name: "",
+        front_log: [''],
+        back_log: [''],
+    }
 ]
