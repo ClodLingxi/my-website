@@ -18,6 +18,7 @@ export interface ConceptData {
 
 export interface TheoremData {
     name: string;
+    base_log?: string[];
     front_log: string[];
     back_log: string[]; 
     explain?: string;

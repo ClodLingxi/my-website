@@ -534,10 +534,98 @@ const conceptList: ConceptData[] = [
         割集秩：n-1，记为$(G)$，`,
         front_log: ['连通图', '生成树', '边割集'],
         other_name: ['基本割集系统', '割集秩']
+    },
+    {
+        name: "环合运算",
+        explain: `设$G_1,G_2$
+        $G_1\\bigoplus G_2$为以$E_1\\bigoplus E_2的边所关联的一切顶点组成为顶点集的图$`,
+        front_log: ['顶点集'],
+    },
+    {
+        name: "环路",
+        explain: `设G为一个无向图，
+        称：G中圈或若干（有限）个边不重的圈的并
+        规定：$\\emptyset 为环路$
+        记：$C_环$为图G中所有环路的集合`,
+        front_log: ['无向图', '圈', '基本回路'],
+    },
+    {
+        name: "环路空间",
+        explain: `设G为无向标定图，无孤立点。
+        $|V|=n,|E|=m$。
+        则G共有$2^m$个不同的边导出子图（包括$\\emptyset $）
+        记：$\\Omega =\\{G_1,G_2,\\cdots ,G_{2^m}\\}$；
+        记：$M=\\{g_1,g_2,\\cdots ,g_{2^m}\\}$（其中：$g_i=G[e_i]$）
+        构造环路空间的基础：
+            对于每个不在生成树T中的边 e，找到它所形成的环路。所有这样的环路构成了环路空间的一个基础集合。也就是说，环路空间可以由这些独立的环路线性组合而成。`,
+        front_log: ['标定图', '孤立点', '连通分支', '生成树', '环路', '基本回路'],
+    },
+    {
+        name: "断集",
+        explain: `设$G=<V,E>$为一个无向图，$V_1\\subset V,V_1 \\neq \\emptyset, \\overline{V_1}=V-V_1$，
+        称：\\{(u,v)|u\\in V_1, v\\in \\overline{V_1}\\}$为G的一个断集，
+        记：$E(V_1X\\overline{V_1})$，简记：$(V_1,\\overline{V_1})$，
+        可知：割集是断集的极小集`,
+        front_log: ['无向图', '边割集', '基本割集']                                                                                  
+    },
+    {
+        name: "根树",
+        explain: `若有向树T，
+        有且仅有一个顶点的入度为0，其余顶点入度为1（或为平凡树）。
+        树根：入度为0的顶点，
+        树叶：入度为1，出度为0的顶点，
+        内点：入度为1，出度不为0的顶点，
+        分支点：树根 + 内点，
+        层数：树根到某一顶点的通路长度，
+        树高：层数最大的顶点的层数称为树高。
+
+        有序树：层数相同的顶点标上同一序号
+    `,
+        front_log: ["无向树", "有向图", '度数'],
+        other_name: ['分支点']
+    },
+    {
+        name: "根树的结点",
+        explain: `u->v：u是父亲，v是儿子
+        u->t->...->v：u是祖先，v是后代
+        w<-u->v：w和v是兄弟`,
+        front_log: ['根树']
+    },
+    {
+        name: "根树的衍生",
+        explain: `衍生：
+        r叉树：每个分支点至多有r个儿子，
+        r叉正则树：每个分支点恰有r个儿子，
+        r叉完全正则树：T是r叉正则树，且每个树叶的层数均为树高，
+        若为有序树，则树->有序树
+        `,
+    },
+    {
+        name: "根子树",
+        explain: `顶点$v\\in T(V)$，由v及其后代组成的导出子图T，
+        T为v的根子树。`,
+    },
+    {
+        name: "根数的周游",
+        explain: `周游：对一颗根树的每个顶点访问且访问一次。
+        中序遍历法：左子树，根，右子树，
+        前序遍历法：根，左子树，右子树，
+        后序遍历法：左子树，右子树，根。
+        
+        （中、前[波兰符号法]、后）缀符号法`
+    },
+    {
+        name: "",
+        explain: ``,
+    },
+    {
+        name: "最优二叉树",
+        explain: `带权的m叉树：设T是m叉树，对T的每一片树叶指定一个实数，
+        最优二叉树：树叶权为$w_1,w_2,\\cdots,w_t的所有二叉树中，权最小（不唯一）的树$`,
     }
 ]
 
-const TheoremList: TheoremData[] = [
+const GraphTheorem: TheoremData[] = [
     {
         name: "图论.1",
         front_log: ["G=<V,E>无向图", 'V={v_1,v_2,...v_n}', '|E|=m'],
@@ -635,6 +723,20 @@ const TheoremList: TheoremData[] = [
         back_log: ["存在V(G)-v的一个划分：$V(G)-v=V_1\\cup V_2$，使得对于任意$u\\in V_1,w\\in V_2$，v都在(u,w)的通路上"],
     },
     {
+        name: "",
+        front_log: [''],
+        back_log: [''],
+    },
+    {
+        name: "图论.22",
+        base_log: ['D为n阶有向图'],
+        front_log: ['D是单向连通图'],
+        back_log: ['D中存在：经过每个顶点至少一次的通路']
+    },
+]
+
+const TreeTheoremList: TheoremData[] = [
+    {
         name: "树.1",
         front_log: ['设G=<V,E>为n阶m条边的无向图，则下面各命题是等价的'],
         back_log: [
@@ -670,6 +772,22 @@ const TheoremList: TheoremData[] = [
         name: "树.6",
         front_log: ['设$G=<V,E>$为n阶无向连通标定图'],
         back_log: ['对G的任意非环边e均有$(G-e)-(G\\e)$'],
+    },
+    {
+        name: "树.8",
+        front_log: [''],
+        back_log: [''],
+    },
+    {
+        name: "树.9",
+        base_log: ['设T是n阶m条边的无向连通图G的一棵生成树'],
+        front_log: ['$C_k$是对应弦$e_k\`$的基本回路，$k=1,2,\\cdots ,m-n+1$'],
+        back_log: ['任意的$r(1<=r<=m-n+1)$条弦$e_$'],
+    },
+    {
+        name: "根树.13",
+        front_log: ['设(r>=2)叉正则树T有i个分支点和t个树叶'],
+        back_log: ['$(r-1)i=t-1$(如果不是正则树，则为$(r-1)i>=t-1$)']
     },
     {
         name: "",

@@ -222,6 +222,29 @@ const conceptList: ConceptData[] = [
             '若为正态分布，则$P\\{a<X<=b\\}=F(b)-F(a)=\\Phi(\\frac{b-\\mu}{\\sigma})-\\Phi(\\frac{a-\\mu}{\\sigma})$',
             '若为正态分布，则$\\Phi(a)+\\Phi(b)\\begin{cases}<1,a+b<0,\\\\\\\\=1,a+b=0,\\\\\\\\>1,a+b>0,\\end{cases}$'
         ]
+    },
+    {
+        name: "二维随机变量及分布",
+        explain: `$F(x,y)=P\\{X<=x, Y<=y\\}$
+        $F_x(x)=P\\{X<=x\\}$
+        $F_y(x)=P\\{Y<=y\\}$`,
+    },
+    {
+        name: "二维离散型随机变量",
+        explain: `$X$的边缘分布律：
+        $P(X=x_i)=P(X=x_i,Y=y_1)+\\cdots+P(x_i,Y=y_n)$`,
+    },
+    {
+        name: "二维连续型随机变量",
+        explain: `分布函数：$F(x,y)=\\int{-\\infty}{x}du\\int{-\\infty}{y}f(u, v)dv$，
+        $f_X(x)=\\int{-\\infty}{+\\infty}f(x,y)dy$,
+        $f_Y(y)=\\int{-\\infty}{+\\infty}f(x,y)dx$,
+        条件概率：
+        $F_{X|Y}(x|y)=\\frac{f(x,y)}{f_Y(y)}$,
+        $F_{Y|X}(y|x)=\\frac{f(x,y)}{f_X(x)}$,
+        独立性：
+        $f(x,y)=f_X(x)f_Y(y)$则独立，as
+        `,
     }
 ];
 

@@ -79,11 +79,12 @@ const conceptList: ConceptData[] = [
     },
     {
         name: "坐标平移",
-        explain: `$^AP=^BP+^AP_{BORG}$（其中^AP_{BORG}为平移向量）`,
+        explain: `$^AP=^BP+^AP_{BORG}$
+        （其中^AP_{BORG}为平移向量，即在A坐标系下，B的原点坐标）`,
     },
     {
         name: "坐标旋转",
-        explain: `$^AP=^A_BR^BP$`,
+        explain: `顺时针：$^AP=^A_BR^BP$`,
     },
     {
         name: "一般变换",
@@ -108,47 +109,63 @@ const conceptList: ConceptData[] = [
     },
     {
         name: "旋转算子",
-        explain: `令R_K(\\theta)=$$$
+        explain: `令$R_K(\\theta)$表示绕$\\hat{K}$轴（顺时针）旋转$\\theta$ 角度
+        例如$R_z(\\theta)=$$
         \\begin{matric}
         \\cos \\theta & -\\sin \\theta & 0 & 0 \\\\\\\\
         \\sin \\theta & \\cos \\theta & 0 & 0 \\\\\\\\
         0 & 0 & 1 & 0 \\\\\\\\
         0 & 0 & 0 & 1 \\\\\\\\
         \\end{matric}
-        $$，表示绕$\\hat{K}$轴旋转$\\theta$ 角度`,
+        $$，`,
     },
     {
         name: "变换算子",
-        explain: `同理与一般变换`,
+        explain: `同理与一般变换,
+        包含$平移算子D，和旋转算子R$`,
         front_log: ['一般变换']
     },
     {
-        name: "复合变换????",
+        name: "复合变换",
         explain: `设旋转算子：$^A_BR,^B_CR$
         平移算子：$^BP_{CORG}, ^AP_{BORG}$
         复合变换：$^A_CT=$$$
         \\begin{matric} 
-        ^A_BR^B_CR & ^B_AR^P_{BORG} + ^B_C \\\\\\\\ 
+        ^A_BR^B_CR & ^A_BR^BP_{CORG} + ^AP_{BORG} \\\\\\\\ 
         [0]_3 & 1 \\\\\\\\                
         \\end{matric}
         $$`,
     },
     {
-        name: "Z-Y-X欧拉角????",
-        explain: `$^A_BR_{Z^\`Y^\`X^\`}(\\alpha,\\beta,\\gamma)=$$$
-        
-        $$`
+        name: "逆变换",
+        explain: `$^B_A=$$$
+        \\begin{matric}
+        ^A_BR^T & -^A_BR^T^AP_{BORG} \\\\\\\\
+        [0]_3 & 1
+        \\end{matric}
+        $$`,
+    },
+    {
+        name: "X-Y-Z固定角",
+        explain: `固定：指每次旋转绕着固定参考系{A}的轴。
+        记：$^A_BR_{XYZ}(\\gamma,\\beta,\\alpha)$`,
+    },
+    {
+        name: "Z-Y-X欧拉角",
+        explain: `先将{B}绕$\\hat{Z_B}$转$\\alpha$角，
+        再绕$\\hat{Y_B}$转$\\beta$角，
+        最后绕$\\hat{X_B}$转$\\gamma$角
+        记：$^A_BR_{Z\`Y\`X\`}(\\alpha,\\beta,\\gamma)$`
     },
     {
         name: "等效角度——轴线表示法",
         explain: `设矢量\\hat{K}为等效轴。
         {B}相对于{A}的一般姿态可用^A_BR(\\hat{K},\\theta)表示，
-        等效旋转矩阵为：
-            $R_K(\\theta)=$$$
-            \\begin{matric} 
-                           
-            \\end{matric}
-            $$
+        $\\hat{K}$为{A}下的矢量
         `,
+    },
+    {
+        name: "",
+        explain: ``,
     }
 ]
