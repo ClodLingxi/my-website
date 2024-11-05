@@ -245,6 +245,10 @@ const conceptList: ConceptData[] = [
         独立性：
         $f(x,y)=f_X(x)f_Y(y)$则独立，as
         `,
+    },
+    {
+        name: "协方差",
+        explain: ``,
     }
 ];
 

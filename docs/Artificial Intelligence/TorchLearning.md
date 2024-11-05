@@ -76,6 +76,32 @@ B = torch.ones(4, 3)
 C = torch.mm(A, B)
 ```
 
+批量矩阵乘法
+```python
+X = torch.ones((2, 1, 4))
+Y = torch.ones((2, 4, 6))
+torch.bmm(X, Y).shape
+```
+
+插入维度
+```python
+x = torch.tensor([[1, 2], [3, 4]])
+y = torch.unsqueeze(x, dim=0) # 在维度插入，并将原维度向后移动
+# tensor([[[1, 2],
+#          [3, 4]]])
+```
+
+删除维度（维度长度为1）
+```python
+x.squeeze(dim=1) # 不指定则删除所有维度为1
+```
+
+重复维度
+```python
+x_tile = x_train.repeat((n_train, 1)) # 在dim0 重复 n_train次，在dim1 重复 1次
+# 若为1维，则转为(n_train, 原dim0)
+```
+
 ### 范数
 
 #### $L_p范数$
@@ -191,9 +217,11 @@ net = nn.Sequential(
 ### 协变量偏移
 
 
-## 循环神经网络
+## RNN
 
 循环神经网络通过引入状态变量存储过去的信息和当前的输入，从而可以以确定当前的输出
+
+**注：一般输入的第一个维度为序列长度，第二个维度为批次**
 
 ### 马尔可夫模型
 
@@ -227,3 +255,34 @@ L(x_1,\dots,x_T,y_1,\dots,y_T,w_h,w_o) = \frac{1}{T}\displaystyle\sum_{t=1}^tl(y
 截断时间步：\frac{\partial{h_{t-1}}}{\partial{w_h}}=
 \\
 $$
+
+### 束搜索
+每个时间步选出$k$个最大概率概率为候选 \ 
+同时给损失乘上$\frac{1}{L^{\alpha}}$（一般$\alpha$为0.75）作为惩罚长序列
+
+
+## 注意力机制
+
+### 注意力评分函数
+
+加性注意力：$a(\bold{q}, \bold{k})=\bold{w}_v^Ttanh(\bold{W}_q\bold{q}+\bold{W}_k\bold{k})\in \Reals$
+缩放点积注意力：$a(\bold{q},\bold{k})=\bold{q}^T\bold{k}/\sqrt{d}$ (其中$d$为查询和键的长度)
+
+
+### 位置编码
+
+x = x + f(x, i, j) # f(x)代表位置嵌入矩阵P
+
+## 凸性
+
+### 詹森不等式
+给定一个凸函数$f$:
+$\displaystyle\sum_i\alpha_if(x_i)\rq f(\displaystyle\sum_i\alpha_ix_i) and E_X[f(X)] \rq f(E_X[X])$
+($其中：\sum_i\alpha_i=1,非负实数$)
+
+### 性质
+
+- 局部极小值使全局极小值
+- 凸函数的下水平集是凸的
+- 凸性和二阶导数
+  - 多维函数$f:\reals ^n \rArr \reals$是凸函数，当且仅当$g(z) \colonequals f(z\bold{x}+(1-z)\bold{y})$是凸的
